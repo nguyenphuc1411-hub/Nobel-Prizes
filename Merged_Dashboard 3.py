@@ -32,10 +32,10 @@ plt.rcParams.update({
     "axes.grid":         False,
 })
 
-# ── CSS (from Web.py) ───────────────────────────────────────────────────────
+# ── CSS — VIBRANT THEME (purple → pink → orange) ────────────────────────────
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     html, body, [class*="css"], * { font-family: 'Inter', sans-serif !important; }
     /* Don't force the font onto icons — keep Material Symbols, otherwise the expander arrow renders as the text "keyboard_arrow_right" */
     [class*="material-icons"], [class*="material-symbols"],
@@ -43,33 +43,105 @@ st.markdown("""
     span[data-testid="stIconMaterial"], .material-symbols-outlined, .material-symbols-rounded {
         font-family: 'Material Symbols Rounded','Material Symbols Outlined','Material Icons' !important;
     }
-    .stApp { background: #f4f6fb; color: #111827; }
-    [data-testid="stSidebar"] { background:#ffffff; border-right:1px solid #e2e8f0; }
+    .stApp { background: #f3f1fe; color: #111827; }
+    [data-testid="stSidebar"] {
+        background:#ffffff; border-right:1px solid #ece8fd;
+        box-shadow: 4px 0 24px rgba(139,92,246,0.06);
+    }
     [data-testid="stSidebar"] * { color:#111827 !important; }
-    [data-testid="metric-container"] {
-        background:#ffffff; border:1px solid #e2e8f0; border-radius:12px;
-        padding:16px 20px; box-shadow:0 2px 8px rgba(37,99,235,0.07);
-    }
-    [data-testid="stMetricValue"]  { color:#2563eb !important; font-size:2rem !important; font-weight:700 !important; }
-    [data-testid="stMetricLabel"]  { color:#111827 !important; font-size:0.85rem !important; font-weight:600 !important; }
+
+    /* ── HEADER: vivid purple → pink → orange gradient ── */
     .main-header {
-        background:linear-gradient(135deg,#1e3a8a,#2563eb);
-        border-radius:14px; padding:24px 32px; margin-bottom:24px;
+        background: linear-gradient(110deg,#7c3aed 0%,#c026d3 25%,#ec4899 45%,#f43f5e 65%,#fb923c 85%,#f59e0b 100%);
+        border-radius:20px; padding:32px 40px; margin-bottom:28px;
+        box-shadow: 0 20px 45px -12px rgba(192,38,211,0.45),
+                    0 8px 20px -8px rgba(244,63,94,0.35);
     }
-    .main-header h1 { color:#fff; margin:0; font-size:2rem; font-weight:700; }
-    .main-header p  { color:#bfdbfe; margin:6px 0 0; font-size:0.95rem; }
-    hr { border-color:#e2e8f0 !important; }
-    .stTabs [data-baseweb="tab-list"] { background:#ffffff; border-radius:10px; padding:4px; }
-    .stTabs [data-baseweb="tab"]      { color:#374151; border-radius:8px; font-weight:500; }
-    .stTabs [aria-selected="true"]    { background:#2563eb !important; color:#ffffff !important; }
+    .main-header h1 {
+        color:#fff; margin:0; font-size:2.6rem; font-weight:800;
+        letter-spacing:-0.02em; text-shadow:0 2px 12px rgba(0,0,0,0.15);
+    }
+    .main-header p  { color:rgba(255,255,255,0.92); margin:10px 0 0; font-size:1rem; }
+    .header-badge {
+        display:inline-block; background:rgba(255,255,255,0.22);
+        border:1px solid rgba(255,255,255,0.45); border-radius:999px;
+        color:#fff; font-size:0.72rem; font-weight:700; letter-spacing:0.08em;
+        text-transform:uppercase; padding:6px 16px; margin:0 8px 14px 0;
+        backdrop-filter: blur(4px);
+    }
+
+    /* ── METRIC CARDS: one bright gradient per card, white text ── */
+    [data-testid="metric-container"], div[data-testid="stMetric"] {
+        border:none; border-radius:16px; padding:18px 22px;
+        box-shadow:0 12px 28px -10px rgba(99,102,241,0.45);
+        background:linear-gradient(135deg,#6366f1,#8b5cf6);
+    }
+    div[data-testid="stColumn"]:nth-of-type(1) div[data-testid="stMetric"],
+    div[data-testid="column"]:nth-of-type(1)   div[data-testid="stMetric"] {
+        background:linear-gradient(135deg,#7c3aed,#a78bfa);
+        box-shadow:0 12px 28px -10px rgba(124,58,237,0.55);
+    }
+    div[data-testid="stColumn"]:nth-of-type(2) div[data-testid="stMetric"],
+    div[data-testid="column"]:nth-of-type(2)   div[data-testid="stMetric"] {
+        background:linear-gradient(135deg,#059669,#2dd4bf);
+        box-shadow:0 12px 28px -10px rgba(16,185,129,0.55);
+    }
+    div[data-testid="stColumn"]:nth-of-type(3) div[data-testid="stMetric"],
+    div[data-testid="column"]:nth-of-type(3)   div[data-testid="stMetric"] {
+        background:linear-gradient(135deg,#f59e0b,#fbbf24);
+        box-shadow:0 12px 28px -10px rgba(245,158,11,0.55);
+    }
+    div[data-testid="stColumn"]:nth-of-type(4) div[data-testid="stMetric"],
+    div[data-testid="column"]:nth-of-type(4)   div[data-testid="stMetric"] {
+        background:linear-gradient(135deg,#ec4899,#fb7185);
+        box-shadow:0 12px 28px -10px rgba(236,72,153,0.55);
+    }
+    div[data-testid="stColumn"]:nth-of-type(5) div[data-testid="stMetric"],
+    div[data-testid="column"]:nth-of-type(5)   div[data-testid="stMetric"] {
+        background:linear-gradient(135deg,#0ea5e9,#22d3ee);
+        box-shadow:0 12px 28px -10px rgba(14,165,233,0.55);
+    }
+    [data-testid="stMetricValue"]  { color:#ffffff !important; font-size:2.2rem !important; font-weight:800 !important; }
+    [data-testid="stMetricLabel"]  { color:rgba(255,255,255,0.95) !important; font-size:0.8rem !important;
+                                     font-weight:700 !important; text-transform:uppercase; letter-spacing:0.08em; }
+
+    hr { border-color:#e6e1fb !important; }
+
+    /* ── TABS: gradient pill for the active tab ── */
+    .stTabs [data-baseweb="tab-list"] {
+        background:#ffffff; border-radius:12px; padding:5px;
+        box-shadow:0 4px 16px rgba(139,92,246,0.10);
+    }
+    .stTabs [data-baseweb="tab"]      { color:#4b5563; border-radius:9px; font-weight:600; }
+    .stTabs [aria-selected="true"]    {
+        background:linear-gradient(110deg,#8b5cf6,#ec4899,#f97316) !important;
+        color:#ffffff !important;
+        box-shadow:0 4px 14px rgba(236,72,153,0.45);
+    }
+    .stTabs [aria-selected="true"] p  { color:#ffffff !important; }
+
     .stPlotlyChart {
-        background:#ffffff; border-radius:12px; padding:8px;
-        border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,0.04);
+        background:#ffffff; border-radius:16px; padding:10px;
+        border:1px solid #ece8fd; box-shadow:0 8px 24px rgba(139,92,246,0.10);
     }
     .section-label {
         color:#111827; font-size:0.75rem; text-transform:uppercase;
         letter-spacing:0.1em; margin:12px 0 4px; font-weight:700;
     }
+
+    /* ── Buttons (Show more, Download): gradient ── */
+    .stButton > button, .stDownloadButton > button {
+        background:linear-gradient(110deg,#8b5cf6,#ec4899,#f97316) !important;
+        color:#ffffff !important; border:none !important; border-radius:12px !important;
+        font-weight:700 !important; padding:10px 22px !important;
+        box-shadow:0 8px 20px -6px rgba(236,72,153,0.5) !important;
+        transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .stButton > button:hover, .stDownloadButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow:0 12px 26px -6px rgba(236,72,153,0.6) !important;
+    }
+    .stButton > button p, .stDownloadButton > button p { color:#ffffff !important; }
 
     /* ── Force dark text color on every widget in the main area (fixes faded text) ── */
     .stApp .main p, .stApp .main span:not([data-testid="stIconMaterial"]), .stApp .main label,
@@ -92,7 +164,10 @@ st.markdown("""
     }
 
     /* Multiselect: selected tags + select box */
-    .stMultiSelect [data-baseweb="tag"] { background:#2563eb !important; }
+    .stMultiSelect [data-baseweb="tag"] {
+        background:linear-gradient(110deg,#8b5cf6,#ec4899) !important;
+        border-radius:999px !important;
+    }
     .stMultiSelect [data-baseweb="tag"] span { color:#ffffff !important; }
     .stMultiSelect [data-baseweb="select"] * { color:#111827 !important; }
 
@@ -101,6 +176,14 @@ st.markdown("""
     .stApp .main h4, .stApp .main h5 { color:#111827 !important; }
     .stApp .main [data-testid="stCaptionContainer"],
     .stApp .main [data-testid="stCaptionContainer"] * { color:#475569 !important; }
+
+    /* ── Keep metric-card text white (must come AFTER the forced-dark rules) ── */
+    .stApp [data-testid="stMetric"] p, .stApp [data-testid="stMetric"] span,
+    .stApp [data-testid="stMetric"] div, .stApp [data-testid="stMetric"] label,
+    .stApp [data-testid="metric-container"] p, .stApp [data-testid="metric-container"] span,
+    .stApp [data-testid="metric-container"] div, .stApp [data-testid="metric-container"] label {
+        color:#ffffff !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -913,8 +996,10 @@ def load_data():
 
 st.markdown("""
 <div class="main-header">
+    <span class="header-badge">Python · Data Science</span>
+    <span class="header-badge">Plotly Interactive</span>
     <h1>🏆 Nobel Laureates Dashboard</h1>
-    <p>Explore Nobel Prize data — 1901 to present.</p>
+    <p>Explore Nobel Prize data — 1901 to present. Tune the filters — every chart updates live.</p>
 </div>""", unsafe_allow_html=True)
 
 with st.spinner("Loading data..."):
@@ -956,14 +1041,14 @@ filtered_df = df[mask].copy()
 # THEME (Plotly helpers from Web.py)
 # ══════════════════════════════════════════════════════════════════════════════
 LIGHT_BG   = "#ffffff"
-PLOT_BG    = "#f8fafc"
-GRID_COL   = "#e2e8f0"
+PLOT_BG    = "#faf9ff"
+GRID_COL   = "#ece8fd"
 TEXT_COL   = "#111827"
 BAR_BORDER = dict(color="#ffffff", width=1.5)
-BLUE_MAIN  = "#2563eb"
+BLUE_MAIN  = "#8b5cf6"
 AMBER      = "#f59e0b"
 PINK       = "#ec4899"
-CAT_PALETTE = ["#2563eb","#10b981","#f59e0b","#ef4444","#8b5cf6","#06b6d4"]
+CAT_PALETTE = ["#8b5cf6","#ec4899","#f97316","#10b981","#06b6d4","#f43f5e"]
 AXIS_FONT  = dict(color=TEXT_COL, family="Inter", size=12)
 TICK_FONT  = dict(color=TEXT_COL, family="Inter", size=11)
 
@@ -1091,14 +1176,14 @@ with tab2:
 
     with col_l:
         fig_map = px.choropleth(country_counts, locations="country", locationmode="country names",
-                                color="count", color_continuous_scale="Viridis",
+                                color="count", color_continuous_scale="Plasma",
                                 projection="natural earth", labels={"count":"Awards"},
                                 custom_data=["hover"])
         fig_map.update_traces(hovertemplate="%{customdata[0]}<extra></extra>")
         fig_map.update_layout(
             paper_bgcolor=LIGHT_BG,
-            geo=dict(bgcolor="#dbeafe", showframe=False, showcoastlines=True, coastlinecolor="#93c5fd",
-                     landcolor="#eff6ff", oceancolor="#bfdbfe", showocean=True, showlakes=True, lakecolor="#93c5fd"),
+            geo=dict(bgcolor="#ede9fe", showframe=False, showcoastlines=True, coastlinecolor="#c4b5fd",
+                     landcolor="#f5f3ff", oceancolor="#ddd6fe", showocean=True, showlakes=True, lakecolor="#c4b5fd"),
             title=dict(text="🗺 Laureates' Birth Countries", font=dict(color=TEXT_COL, size=14, family="Inter")),
             coloraxis_colorbar=dict(title=dict(text="Awards", font=dict(color=TEXT_COL, family="Inter")),
                                     tickfont=dict(color=TEXT_COL, family="Inter")),
@@ -1108,7 +1193,7 @@ with tab2:
     with col_r:
         top_countries = country_counts.head(top_n).sort_values("count")
         n = len(top_countries)
-        bar_colors = pc.sample_colorscale("Viridis", [i/max(n-1,1) for i in range(n)])
+        bar_colors = pc.sample_colorscale("Plasma", [i/max(n-1,1) for i in range(n)])
         fig_ctry = go.Figure(go.Bar(
             x=top_countries["count"], y=top_countries["country"], orientation="h",
             text=top_countries["count"], textposition="outside",
